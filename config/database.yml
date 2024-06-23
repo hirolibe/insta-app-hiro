@@ -83,3 +83,4 @@ production:
   database: insta_app_hiro_production
   username: insta_app_hiro
   password: <%= ENV['INSTA_APP_HIRO_DATABASE_PASSWORD'] %>
+  host: <%= ENV['DATABASE_HOST'] %>
