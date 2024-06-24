@@ -1,0 +1,14 @@
+.field
+  = f.label :account
+  = f.text_field :account, autofocus: true, class: "text"
+%br/
+.field
+  = f.label :email
+  = f.email_field :email, autofocus: true, autocomplete: "email", class: "text"
+%br/
+.field
+  = f.label :password
+  -# - if @minimum_password_length
+  -#   %em
+  -#     (#{@minimum_password_length} characters minimum)
+  = f.password_field :password, autocomplete: "new-password", class: "text"

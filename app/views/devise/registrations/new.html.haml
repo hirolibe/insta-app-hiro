@@ -1,0 +1,9 @@
+=render "devise/shared/top_image"
+
+.container
+  = render "devise/shared/error_messages", resource: resource
+  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = render "devise/shared/account_info", f: f
+
+    .actions
+      = f.submit "CREATE ACCOUNT", class: "btn-primary"
