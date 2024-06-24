@@ -1,0 +1,15 @@
+.top-image
+  = image_tag "Rectangle.png"
+.container
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    .field
+      = f.label :email
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: "text"
+    %br/
+    .field
+      = f.label :password
+      = f.password_field :password, autocomplete: "current-password", class: "text"
+    .others
+      = render "devise/shared/links"
+    .actions
+      = f.submit "LOGIN", class: "btn-primary"

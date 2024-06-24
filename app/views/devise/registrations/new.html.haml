@@ -1,0 +1,22 @@
+.top-image
+  = image_tag "Rectangle.png"
+.container
+  = render "devise/shared/error_messages", resource: resource
+  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    -# .field
+    -#   = f.label :account
+    -#   = f.text_field :account, autofocus: true, class: "text"
+    -# %br/
+    .field
+      = f.label :email
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: "text"
+    %br/
+    .field
+      = f.label :password
+      -# - if @minimum_password_length
+      -#   %em
+      -#     (#{@minimum_password_length} characters minimum)
+      = f.password_field :password, autocomplete: "new-password", class: "text"
+
+    .actions
+      = f.submit "CREATE ACCOUNT", class: "btn-primary"
