@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   root to: 'albums#index'
 
-  resources :albums
+  resources :albums, only: [:index]
   resource :profile, only: [:show, :edit, :update]
+  resource :avatar, only: [:update]
 end
