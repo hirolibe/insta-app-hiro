@@ -3,7 +3,7 @@
 .top-image {
   overflow: hidden;
 
-  & img {
+  img {
     width: 100%;
   }
 }
@@ -34,7 +34,7 @@ textarea {
 }
 
 .others {
-  & a {
+  a {
     color: $secondary-color;
     font-size: 11px;
     display: block;

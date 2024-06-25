@@ -1,0 +1,152 @@
+@import './variables';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+
+  &_changePage {
+    width: 33%;
+  }
+
+  &_title {
+    width: 33%;
+    text-align: center;
+
+    h2 {
+      font-size: 16px;
+      color: $primary-color;
+    }
+  }
+
+  &_action {
+    width: 33%;
+    text-align: right;
+
+    a {
+      font-size: 16px;
+      color: $secondary-color;
+    }
+  }
+}
+
+.profilePage {
+  &_user {
+    display: flex;
+    flex-direction: column;
+
+    ul {
+      padding: 0;
+      list-style: none;
+      margin-bottom: 30px;
+    }
+
+    &_image {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+
+      form {
+        width: 84px;
+        height: 84px;
+        border-radius: 100%;
+        overflow: hidden;
+        position: relative;
+
+        img {
+          cursor: pointer;
+          height: auto;
+          width: 100%;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+
+    &_info {
+      display: flex;
+      justify-content: center;
+
+      li {
+        margin: 0 16px;
+        text-align: center;
+        width: 70px;
+      }
+
+      &_count {
+        font-weight: bold;
+        font-size: 16px;
+        color: $primary-color;
+      }
+
+      &_item {
+        font-size: 14px;
+        color: $secondary-color;
+      }
+    }
+  }
+
+  &_albums {
+    height: 200px;
+
+    &_pictures {
+      display: flex;
+      height: 100%;
+      margin-bottom: 6px;
+
+      &_large {
+        position: relative;
+        overflow: hidden;
+        width: 66%;
+        margin-right: 6px;
+
+        img {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: auto;
+          height: 100%;
+          transform: translate(-50%, -50%);
+        }
+      }
+
+      &_small {
+        width: 33%;
+        padding-bottom: 6px;
+
+        &_above {
+          position: relative;
+          overflow: hidden;
+          height: 50%;
+          margin-bottom: 6px;
+
+          img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: auto;
+            height: 100%;
+            transform: translate(-50%, -50%);
+          }
+        }
+
+        &_below {
+          position: relative;
+          overflow: hidden;
+          height: 50%;
+
+          img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: auto;
+            height: 100%;
+            transform: translate(-50%, -50%);
+          }
+        }
+      }
+    }
+  }
+}

@@ -2,7 +2,7 @@
 @import 'button';
 @import 'form';
 @import 'flash';
-
+@import 'profile';
 
 html {
   word-spacing: 1px;
@@ -11,7 +11,6 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
-  height: 100%;
 }
 
 *,
@@ -24,6 +23,7 @@ html {
 body {
   font-size: 1em;
   color: $primary-color;
+  width: 100%;
 }
 
 a {
@@ -33,9 +33,6 @@ a {
 .container {
   padding: 16px 16px;
   width: 100%;
-  h2 {
-    margin: 20px 0 20px 10px;
-  }
 }
 
 form {

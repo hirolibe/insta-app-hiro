@@ -1,0 +1,53 @@
+.container
+  .header
+    .header_changePage
+      = link_to profile_path do
+        = image_tag "back.png"
+    .header_title
+      %h2= current_user.account
+    .header_action
+      -# = link_to "Action", profile_path
+
+  .profilePage
+    .profilePage_user
+      .profilePage_user_image
+        = form_with model: current_user, url: avatar_path, method: :put, local: true do |f|
+          = f.label :avatar do
+            = f.file_field :avatar, style: "display:none;", onchange: "this.form.submit()"
+            - if current_user.avatar&.attached?
+              = image_tag current_user.avatar
+            - else
+              = image_tag 'default-avatar.png'
+      %ul.profilePage_user_info
+        %li
+          .profilePage_user_info_count
+            %p= 44
+          .profilePage_user_info_item
+            %p Posts
+        %li
+          .profilePage_user_info_count
+            %p= 110
+          .profilePage_user_info_item
+            %p Followers
+        %li
+          .profilePage_user_info_count
+            %p= 55
+          .profilePage_user_info_item
+            %p Followings
+    .profilePage_albums
+      .profilePage_albums_pictures
+        .profilePage_albums_pictures_large
+          = image_tag 'Rectangle.png'
+        .profilePage_albums_pictures_small
+          .profilePage_albums_pictures_small_above
+            = image_tag 'Rectangle.png'
+          .profilePage_albums_pictures_small_below
+            = image_tag 'Rectangle.png'
+      .profilePage_albums_pictures
+        .profilePage_albums_pictures_large
+          = image_tag 'Rectangle.png'
+        .profilePage_albums_pictures_small
+          .profilePage_albums_pictures_small_above
+            = image_tag 'Rectangle.png'
+          .profilePage_albums_pictures_small_below
+            = image_tag 'Rectangle.png'
