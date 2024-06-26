@@ -1,0 +1,78 @@
+@import './variables';
+
+.card {
+  height: auto;
+
+  &_top {
+    display: flex;
+    font-size: 10px;
+    margin-bottom: 10px;
+
+    &_image {
+      display: flex;
+      align-items: center;
+      margin-right: 8px;
+
+      img {
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+      }
+    }
+
+    &_detail_name {
+      color: $primary-color;
+      font-size: 14px;
+    }
+
+    &_detail_time {
+      color: $secondary-color;
+      font-size: 12px;
+    }
+  }
+
+  &_pictures {
+    display: flex;
+    height: auto;
+    width: 100%;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+
+    &_picture {
+      position: relative;
+      overflow: hidden;
+      height: 150px;
+      width: 50%;
+
+      img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: auto;
+        transform: translate(-50%, -50%);
+        padding: 6px;
+      }
+    }
+  }
+
+  &_icon {
+    img {
+      margin-right: 5px;
+    }
+  }
+
+  &_detail {
+    font-size: 12px;
+    margin-bottom: 30px;
+
+    &_title {
+      display: flex;
+
+      &_author {
+        font-weight: bold;
+        margin-right: 10px;
+      }
+    }
+  }
+}

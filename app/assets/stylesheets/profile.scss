@@ -30,123 +30,59 @@
   }
 }
 
-.profilePage {
-  &_user {
+.profile {
+  display: flex;
+  flex-direction: column;
+
+  ul {
+    padding: 0;
+    list-style: none;
+    margin-bottom: 30px;
+  }
+
+  &_image {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 30px;
 
-    ul {
-      padding: 0;
-      list-style: none;
-      margin-bottom: 30px;
-    }
+    form {
+      width: 84px;
+      height: 84px;
+      border-radius: 100%;
+      overflow: hidden;
+      position: relative;
 
-    &_image {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 30px;
-
-      form {
-        width: 84px;
-        height: 84px;
-        border-radius: 100%;
-        overflow: hidden;
-        position: relative;
-
-        img {
-          cursor: pointer;
-          height: auto;
-          width: 100%;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-        }
-      }
-    }
-
-    &_info {
-      display: flex;
-      justify-content: center;
-
-      li {
-        margin: 0 16px;
-        text-align: center;
-        width: 70px;
-      }
-
-      &_count {
-        font-weight: bold;
-        font-size: 16px;
-        color: $primary-color;
-      }
-
-      &_item {
-        font-size: 14px;
-        color: $secondary-color;
+      img {
+        cursor: pointer;
+        height: auto;
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
     }
   }
 
-  &_albums {
-    height: 200px;
+  &_info {
+    display: flex;
+    justify-content: center;
 
-    &_pictures {
-      display: flex;
-      height: 100%;
-      margin-bottom: 6px;
+    li {
+      margin: 0 16px;
+      text-align: center;
+      width: 70px;
+    }
 
-      &_large {
-        position: relative;
-        overflow: hidden;
-        width: 66%;
-        margin-right: 6px;
+    &_count {
+      font-weight: bold;
+      font-size: 16px;
+      color: $primary-color;
+    }
 
-        img {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: auto;
-          height: 100%;
-          transform: translate(-50%, -50%);
-        }
-      }
-
-      &_small {
-        width: 33%;
-        padding-bottom: 6px;
-
-        &_above {
-          position: relative;
-          overflow: hidden;
-          height: 50%;
-          margin-bottom: 6px;
-
-          img {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: auto;
-            height: 100%;
-            transform: translate(-50%, -50%);
-          }
-        }
-
-        &_below {
-          position: relative;
-          overflow: hidden;
-          height: 50%;
-
-          img {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: auto;
-            height: 100%;
-            transform: translate(-50%, -50%);
-          }
-        }
-      }
+    &_item {
+      font-size: 14px;
+      color: $secondary-color;
     }
   }
 }
