@@ -1,1 +1,35 @@
-Albums
+.container
+  .header
+    .header_changePage
+      = link_to new_album_path do
+        = image_tag 'camera.png'
+    .header_title
+    .header_action
+
+  - @albums.each do |album|
+    = link_to album_path(album) do
+      .card
+        .card_top
+          .card_top_image
+            = image_tag 'アイコン.jpg'
+          .card_top_detail
+            .card_top_detail_name
+              %p= album.user.account
+            .card_top_detail_time
+              %p #{time_ago_in_words album.created_at} ago
+        .card_pictures
+          - if album.pictures.attached?
+            - album.pictures.each do |picture|
+              .card_pictures_picture
+                = image_tag picture
+        .card_icon
+          = image_tag 'heart-active.png'
+          = image_tag 'comment.png'
+          = link_to "https://x.com/intent/post?text=#{album.title}&url=#{album_url(album)}&hashtags=デイトラ,DAY19", data: { toggle: "tooltip", placement: "bottom" }, title: "Xでシェア", target: "_blank" do
+            = image_tag 'link.png'
+        .card_detail
+          %p Jasmine and 12,000 other liked your post
+          .card_detail_title
+            .card_detail_title_author
+              %p= album.user.account
+            %p= album.title

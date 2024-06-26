@@ -1,0 +1,28 @@
+@import './variables';
+
+.picture {
+  &_author {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+
+    &_avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+      overflow: hidden;
+      position: relative;
+      margin-right: 16px;
+
+      img {
+        cursor: pointer;
+        height: auto;
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+}
