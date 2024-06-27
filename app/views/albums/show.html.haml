@@ -6,7 +6,7 @@
     .header_title
     .header_action
 
-  .card
+  .card#album-show{data: {album_id: @album.id}}
     .card_top
       .card_top_image
         = image_tag 'アイコン.jpg'
@@ -22,14 +22,21 @@
             = image_tag picture
       - else
         %p 写真がありません
-    .card_icon
-      = image_tag 'heart-active.png'
-      = image_tag 'comment.png'
-      = link_to "https://x.com/intent/post?text=#{@album.title}&url=#{album_url(@album)}&hashtags=デイトラ,DAY19", data: { toggle: "tooltip", placement: "bottom" }, title: "Xでシェア", target: "_blank" do
-        = image_tag 'link.png'
+    - if user_signed_in?
+      .card_icon
+        .album_heart.hidden.active-heart
+          = image_tag 'heart-active.png'
+        .album_heart.hidden.inactive-heart
+          = image_tag 'heart.png'
+        = image_tag 'comment.png'
+        = link_to "https://x.com/intent/post?text=#{@album.title}&url=#{album_url(@album)}&hashtags=デイトラ,DAY19", data: { toggle: "tooltip", placement: "bottom" }, title: "Xでシェア", target: "_blank" do
+          = image_tag 'link.png'
     .card_detail
       %p Jasmine and 12,000 other liked your post
       .card_detail_title
         .card_detail_title_author
           %p= @album.user.account
         %p= @album.title
+
+= javascript_pack_tag 'album'
+= javascript_pack_tag 'album_index'

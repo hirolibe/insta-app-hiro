@@ -57,8 +57,12 @@
   }
 
   &_icon {
+    display: flex;
+    align-items: center;
+
     img {
-      margin-right: 5px;
+      margin-right: 8px;
+      height: 16px;
     }
   }
 

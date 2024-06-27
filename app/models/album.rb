@@ -14,9 +14,10 @@
 #
 class Album < ApplicationRecord
   has_many_attached :pictures
+  has_many :likes, dependent: :destroy
 
   belongs_to :user
 
   validates :title, presence: true
-  # validates :pictures, presence: true
+  validates :pictures, presence: true
 end

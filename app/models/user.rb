@@ -25,6 +25,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :albums, dependent: :destroy
+  has_many :likes, dependent: :destroy
   has_one_attached :avatar
 
   validates :account, presence: true, uniqueness: true
