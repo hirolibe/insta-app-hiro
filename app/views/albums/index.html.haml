@@ -3,8 +3,6 @@
     .header_changePage
       = link_to new_album_path do
         = image_tag 'camera.png'
-    .header_title
-    .header_action
 
   - @albums.each do |album|
     .card{id: "album_#{album.id}", data: { album_id: album.id }}
@@ -27,7 +25,7 @@
           = image_tag 'heart-active.png'
         .album_heart.hidden{id: "inactive-heart-icon-#{album.id}"}
           = image_tag 'heart.png'
-        .comment-icon
+        = link_to album_comments_path(album_id: album.id) do
           = image_tag 'comment.png'
         = link_to "https://x.com/intent/post?text=#{album.title}&url=#{album_url(album)}&hashtags=デイトラ,DAY19", data: { toggle: "tooltip", placement: "bottom" }, title: "Xでシェア", target: "_blank" do
           = image_tag 'link.png'

@@ -10,13 +10,13 @@
 
     &_image {
       display: flex;
-      align-items: center;
       margin-right: 8px;
 
       img {
         width: 30px;
         height: 30px;
         border-radius: 100%;
+        margin-top: 5px;
       }
     }
 

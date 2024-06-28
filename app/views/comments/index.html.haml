@@ -1,0 +1,22 @@
+.container
+  .header
+    .header_changePage
+      = link_to root_path do
+        = image_tag "back.png"
+    .header_title
+      %h2 Comment
+
+  - @comments.each do |comment|
+    .card
+      .card_top
+        .card_top_image
+          = image_tag 'アイコン.jpg'
+        .card_top_detail
+          .card_top_detail_name
+            %p= comment.user.account
+          .card_top_detail_info
+            %p= comment.content
+
+  = link_to new_album_comment_path do
+    .btn-comment
+      = image_tag 'comment.png'
