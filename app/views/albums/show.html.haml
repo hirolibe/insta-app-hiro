@@ -6,7 +6,7 @@
     .header_title
     .header_action
 
-  .card#album-show{data: {album_id: @album.id}}
+  .card{id: "album_#{@album.id}", data: { album_id: @album.id }}
     .card_top
       .card_top_image
         = image_tag 'アイコン.jpg'
@@ -24,9 +24,9 @@
         %p 写真がありません
     - if user_signed_in?
       .card_icon
-        .album_heart.hidden.active-heart
+        .album_heart.hidden{id: "active-heart-icon-#{@album.id}"}
           = image_tag 'heart-active.png'
-        .album_heart.hidden.inactive-heart
+        .album_heart.hidden{id: "inactive-heart-icon-#{@album.id}"}
           = image_tag 'heart.png'
         = image_tag 'comment.png'
         = link_to "https://x.com/intent/post?text=#{@album.title}&url=#{album_url(@album)}&hashtags=デイトラ,DAY19", data: { toggle: "tooltip", placement: "bottom" }, title: "Xでシェア", target: "_blank" do
@@ -37,6 +37,3 @@
         .card_detail_title_author
           %p= @album.user.account
         %p= @album.title
-
-= javascript_pack_tag 'album'
-= javascript_pack_tag 'album_index'

@@ -42,7 +42,8 @@
       position: relative;
       overflow: hidden;
       height: 150px;
-      width: 50%;
+      width: 45%;
+      margin: 6px;
 
       img {
         position: absolute;
@@ -51,7 +52,6 @@
         width: 100%;
         height: auto;
         transform: translate(-50%, -50%);
-        padding: 6px;
       }
     }
   }
