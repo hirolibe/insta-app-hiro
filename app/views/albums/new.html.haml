@@ -15,9 +15,13 @@
         %p= @album.user.account
     .picture_post
       = form_with model: @album, local: true do |f|
-        = f.text_field :title, class: 'text', placeholder: "What's on your mind?"
+        = f.text_field :title, class: 'text', placeholder: "Title"
         = f.label :pictures do
           = f.file_field :pictures, multiple: true, style: "display:none;"
           .btn-secondary
             + Album
+        %p 0 selected
         = f.submit "Post", class: "btn-primary"
+    %ul#error_explanation
+      - @album.errors.full_messages.each do |message|
+        %li= message

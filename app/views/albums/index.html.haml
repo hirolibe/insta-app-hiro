@@ -7,8 +7,8 @@
     .header_action
 
   - @albums.each do |album|
-    = link_to album_path(album) do
-      .card
+    .card{id: "album_#{album.id}", data: { album_id: album.id }}
+      = link_to album_path(album) do
         .card_top
           .card_top_image
             = image_tag 'アイコン.jpg'
@@ -22,14 +22,18 @@
             - album.pictures.each do |picture|
               .card_pictures_picture
                 = image_tag picture
-        .card_icon
+      .card_icon
+        .album_heart.hidden{id: "active-heart-icon-#{album.id}"}
           = image_tag 'heart-active.png'
+        .album_heart.hidden{id: "inactive-heart-icon-#{album.id}"}
+          = image_tag 'heart.png'
+        .comment-icon
           = image_tag 'comment.png'
-          = link_to "https://x.com/intent/post?text=#{album.title}&url=#{album_url(album)}&hashtags=デイトラ,DAY19", data: { toggle: "tooltip", placement: "bottom" }, title: "Xでシェア", target: "_blank" do
-            = image_tag 'link.png'
-        .card_detail
-          %p Jasmine and 12,000 other liked your post
-          .card_detail_title
-            .card_detail_title_author
-              %p= album.user.account
-            %p= album.title
+        = link_to "https://x.com/intent/post?text=#{album.title}&url=#{album_url(album)}&hashtags=デイトラ,DAY19", data: { toggle: "tooltip", placement: "bottom" }, title: "Xでシェア", target: "_blank" do
+          = image_tag 'link.png'
+      .card_detail
+        %p Jasmine and 12,000 other liked your post
+        .card_detail_title
+          .card_detail_title_author
+            %p= album.user.account
+          %p= album.title

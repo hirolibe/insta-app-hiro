@@ -5,6 +5,13 @@ Rails.application.routes.draw do
   root to: 'albums#index'
 
   resources :albums
+
   resource :profile, only: [:show, :edit, :update]
   resource :avatar, only: [:update]
+
+  namespace :api, defaults: {format: :json} do
+    scope 'albums/:album_id' do
+      resource :like, only: [:show, :create, :destroy]
+    end
+  end
 end

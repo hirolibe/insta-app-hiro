@@ -34,10 +34,8 @@
           %p Followings
   .card
     .card_pictures
-      .card_pictures_large
-        = image_tag 'Rectangle.png'
-      .card_pictures_small
-        .card_pictures_small_above
-          = image_tag 'Rectangle.png'
-        .card_pictures_small_below
-          = image_tag 'Rectangle.png'
+      - @user.albums.each do |album|
+        - if album.pictures.attached?
+          - album.pictures.each do |picture|
+            .card_pictures_picture
+              = image_tag picture
