@@ -2,8 +2,20 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    album = Album.find(params[:album_id])
-    @comments = album.comments
+    @album = Album.find(params[:album_id])
+    comments = @album.comments
+    comments = comments.map do |comment|
+      {
+        id: comment.id,
+        content: comment.content,
+        user: {
+          account: comment.user.account,
+          avatar_url: url_for(comment.user.avatar)
+        }
+      }
+    end
+
+    render json: comments
   end
 
   def new

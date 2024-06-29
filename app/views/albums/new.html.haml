@@ -9,7 +9,7 @@
   .picture
     .picture_author
       .picture_author_avatar
-        = image_tag 'アイコン.jpg'
+        = image_tag url_for(@album.user.avatar)
       .picture_author_name
         %p= @album.user.account
     .picture_post

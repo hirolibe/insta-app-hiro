@@ -16,8 +16,11 @@ require("channels")
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
+
 import $ from 'jquery'
 import axios from 'modules/axios'
+
+//Like
 import {
   listenInactiveHeartEvent,
   listenActiveHeartEvent
@@ -49,6 +52,32 @@ document.addEventListener('turbolinks:load', () => {
 
       listenInactiveHeartEvent(albumId)
       listenActiveHeartEvent(albumId)
-      }
+
+      axios.get(`/albums/${albumId}/comments`)
+        .then((response) => {
+          const comments = response.data
+          comments.forEach((comment) => {
+            $('.comments-container').append(
+              `<div class="card">
+                <div class="card_top">
+                  <div class="card_top_image">
+                    <img src="${comment.user.avatar_url}" alt="Avatar">
+                  </div>
+                  <div class="card_top_detail">
+                    <div class="card_top_detail_name">
+                      <p>${comment.user.account}</p>
+                    </div>
+                    <div class="card_top_detail_info">
+                      <p>${comment.content}</p>
+                    </div>
+                </div>
+              </div>`
+            )
+          })
+        })
+        .catch((error) => {
+          window.alert('失敗!')
+        })
+    }
   })
 })
