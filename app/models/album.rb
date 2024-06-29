@@ -15,6 +15,7 @@
 class Album < ApplicationRecord
   has_many_attached :pictures
   has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   belongs_to :user
 

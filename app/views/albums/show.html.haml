@@ -3,32 +3,28 @@
     .header_changePage
       = link_to root_path do
         = image_tag "back.png"
-    .header_title
-    .header_action
 
   .card{id: "album_#{@album.id}", data: { album_id: @album.id }}
-    .card_top
-      .card_top_image
-        = image_tag 'アイコン.jpg'
-      .card_top_detail
-        .card_top_detail_name
-          %p= @album.user.account
-        .card_top_detail_time
-          %p #{time_ago_in_words @album.created_at} ago
+    = link_to profile_path do
+      .card_top
+        .card_top_image
+          = image_tag url_for(@album.user.avatar)
+        .card_top_detail
+          .card_top_detail_name
+            %p= @album.user.account
+          .card_top_detail_time
+            %p #{time_ago_in_words @album.created_at} ago
     .card_pictures
       - if @album.pictures.attached?
         - @album.pictures.each do |picture|
           .card_pictures_picture
             = image_tag picture
-      - else
-        %p 写真がありません
     - if user_signed_in?
       .card_icon
         .album_heart.hidden{id: "active-heart-icon-#{@album.id}"}
           = image_tag 'heart-active.png'
         .album_heart.hidden{id: "inactive-heart-icon-#{@album.id}"}
           = image_tag 'heart.png'
-        = image_tag 'comment.png'
         = link_to "https://x.com/intent/post?text=#{@album.title}&url=#{album_url(@album)}&hashtags=デイトラ,DAY19", data: { toggle: "tooltip", placement: "bottom" }, title: "Xでシェア", target: "_blank" do
           = image_tag 'link.png'
     .card_detail
@@ -37,3 +33,13 @@
         .card_detail_title_author
           %p= @album.user.account
         %p= @album.title
+
+  .comment
+    %h3 Comment
+    .comment-container
+    .comment_btn.show-comment-form
+      = image_tag 'comment.png'
+    .comment-text-area.hidden
+      = text_area_tag :comment_content, '', class: 'sm'
+      .btn-primary.add-comment-button
+        Post Comment

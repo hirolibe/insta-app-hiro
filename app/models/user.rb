@@ -26,6 +26,7 @@ class User < ApplicationRecord
 
   has_many :albums, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_one_attached :avatar
 
   validates :account, presence: true, uniqueness: true

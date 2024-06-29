@@ -5,12 +5,11 @@
         %p Cancel
     .header_title
       %p Status
-    .header_action
 
   .picture
     .picture_author
       .picture_author_avatar
-        = image_tag 'アイコン.jpg'
+        = image_tag url_for(@album.user.avatar)
       .picture_author_name
         %p= @album.user.account
     .picture_post
@@ -19,9 +18,9 @@
         = f.label :pictures do
           = f.file_field :pictures, multiple: true, style: "display:none;"
           .btn-secondary
-            + Album
+            + Pictures
         %p 0 selected
-        = f.submit "Post", class: "btn-primary"
+        = f.submit "Post Album", class: "btn-primary"
     %ul#error_explanation
       - @album.errors.full_messages.each do |message|
         %li= message
