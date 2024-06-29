@@ -1,10 +1,21 @@
 @import './variables';
 
 .comment {
+  margin-top: 50px;
   padding: 0 20px 0 10px;
 
   h3 {
     font-size: 14px;
     margin-bottom: 8px;
+  }
+
+  &_btn {
+    padding: 10px 20px;
+    width: 100%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  }
+
+  .show-comment-form {
+    margin-top: 30px;
   }
 }

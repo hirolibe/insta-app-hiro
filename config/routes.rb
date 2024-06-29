@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root to: 'albums#index'
 
   resources :albums do
-    resources :comments, only: [:index, :new, :create]
+    resources :comments, only: [:index, :create]
   end
 
   resource :profile, only: [:show, :edit, :update]

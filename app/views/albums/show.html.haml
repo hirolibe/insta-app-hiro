@@ -36,22 +36,10 @@
 
   .comment
     %h3 Comment
-
-    .comments-container
-
-    .btn-comment.show-comment-form
+    .comment-container
+    .comment_btn.show-comment-form
       = image_tag 'comment.png'
     .comment-text-area.hidden
       = text_area_tag :comment_content, '', class: 'sm'
-      .btn-secondary.add-comment-button
-        = image_tag 'comment.png'
-    -# - @comments.each do |comment|
-    -#   .card
-    -#     .card_top
-    -#       .card_top_image
-    -#         = image_tag 'アイコン.jpg'
-    -#       .card_top_detail
-    -#         .card_top_detail_name
-    -#           %p= comment.user.account
-    -#         .card_top_detail_info
-    -#           %p= comment.content
+      .btn-primary.add-comment-button
+        Post Comment
