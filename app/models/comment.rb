@@ -19,4 +19,23 @@ class Comment < ApplicationRecord
   belongs_to :album
 
   validates :content, presence: true
+
+  after_create :send_email_if_mentioned
+
+  private
+
+  def send_email_if_mentioned
+    mentioned_usernames = extract_mentions
+    unless mentioned_usernames.empty?
+      # メンションされた全てのユーザーにメールを送信する場合
+      mentioned_users = User.where(account: mentioned_usernames)
+      mentioned_users.each do |mentioned_user|
+        CommentMailer.comment(album, mentioned_user, user).deliver_now
+      end
+    end
+  end
+
+  def extract_mentions
+    content.scan(/@(\w+)/).flatten
+  end
 end
