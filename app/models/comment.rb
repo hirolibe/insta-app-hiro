@@ -30,7 +30,7 @@ class Comment < ApplicationRecord
       # メンションされた全てのユーザーにメールを送信する場合
       mentioned_users = User.where(account: mentioned_usernames)
       mentioned_users.each do |mentioned_user|
-        CommentMailer.comment(album, mentioned_user, user).deliver_now
+        CommentMailer.comment(album, mentioned_user, user).deliver_later
       end
     end
   end
