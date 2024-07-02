@@ -1,5 +1,5 @@
 class Api::LikesController < Api::ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
 
   def show
     album = Album.find(params[:album_id])

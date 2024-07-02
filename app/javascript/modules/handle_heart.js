@@ -15,7 +15,7 @@ const listenInactiveHeartEvent = (albumId) => {
 
 const listenActiveHeartEvent = (albumId) => {
   $(`#active-heart-icon-${albumId}`).off('click').on('click', () => {
-    axios.post(`/api/albums/${albumId}/like`)
+    axios.delete(`/api/albums/${albumId}/like`)
       .then((response) => {
         if (response.data.status === 'ok') {
           $(`#active-heart-icon-${albumId}`).addClass('hidden')
