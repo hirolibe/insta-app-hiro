@@ -1,12 +1,10 @@
 .container
   .header
     .header_changePage
-      = link_to new_album_path do
-        = image_tag 'camera.png'
     .header_title
-      %p All Albums
+      %p Timeline
     .header_action
-      = link_to 'Timeline', timeline_path
+      = link_to 'All Albums', root_path
 
   - @albums.each do |album|
     .card{data: { album_id: album.id }}
