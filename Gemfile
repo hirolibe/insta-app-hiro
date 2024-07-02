@@ -34,6 +34,7 @@ gem 'devise'
 gem 'faker'
 gem 'hamlit'
 gem 'sidekiq'
+gem 'active_decorator'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

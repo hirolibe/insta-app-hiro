@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   resource :profile, only: [:show, :edit, :update]
   resource :avatar, only: [:update]
+  resource :timeline, only: [:show]
 
   namespace :api, defaults: {format: :json} do
     scope 'albums/:album_id' do
