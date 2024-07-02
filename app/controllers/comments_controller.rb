@@ -32,7 +32,8 @@ class CommentsController < ApplicationController
       content: comment.content,
       user: {
         account: comment.user.account,
-        avatar_url: url_for(comment.user.avatar)
+        account_path: account_path(comment.user),
+        avatar_url: comment.user.avatar.attached? ? url_for(comment.user.avatar) : ActionController::Base.helpers.asset_path('default-avatar.png')
       }
     }
   end

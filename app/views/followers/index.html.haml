@@ -1,0 +1,23 @@
+.container
+  .header
+    .header_changePage
+      = link_to account_path(@user) do
+        = image_tag "back.png"
+    .header_title
+      %p Followers
+
+  .follow_list
+    - @user.followers.each do |follower_account|
+      .card
+        = link_to account_path(follower_account) do
+          .card_top
+            .card_top_image
+              - if follower_account&.avatar&.attached?
+                = image_tag url_for(follower_account.avatar)
+              - else
+                = image_tag 'default-avatar.png'
+            .card_top_detail
+              .card_top_detail_name
+                %p= follower_account.account
+              .card_top_detail_time
+                %p #{time_ago_in_words @user.has_been_followed_by(follower_account)} ago

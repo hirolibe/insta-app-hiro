@@ -1,0 +1,10 @@
+@import './variables';
+
+.follow_list {
+  padding: 30px;
+
+  .card {
+    border-bottom: 0.1px solid $secondary-color;
+    padding: 10px 0;
+  }
+}

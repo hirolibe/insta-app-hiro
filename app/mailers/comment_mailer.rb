@@ -1,5 +1,5 @@
 class CommentMailer < ApplicationMailer
-  def comment(album, mentioned_user, commenter)
+  def mention(album, mentioned_user, commenter)
     @album = album
     @mentioned_user = mentioned_user
     @commenter = commenter
