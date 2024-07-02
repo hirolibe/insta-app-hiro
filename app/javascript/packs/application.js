@@ -44,7 +44,9 @@ const appendNewComment = (comment) => {
     `<div class="card">
       <div class="card_top">
         <div class="card_top_image">
-          <img src="${comment.user.avatar_url}" alt="Avatar">
+          <a href="${comment.user.account_path}">
+            <img src="${comment.user.avatar_url}" alt="Avatar">
+          </a>
         </div>
         <div class="card_top_detail">
           <div class="card_top_detail_name">
@@ -59,56 +61,95 @@ const appendNewComment = (comment) => {
 }
 
 document.addEventListener('turbolinks:load', () => {
-  // すべてのアルバムカード要素を取得
-  const albums = document.querySelectorAll('.card')
-
-  albums.forEach((album) => {
-    const dataset = album.dataset
-    const albumId = dataset.albumId
-    if (albumId) {
-      // Like
-      // いいね状態の取得
-      axios.get(`/api/albums/${albumId}/like`)
-        .then((response) => {
-          const hasLiked = response.data.hasLiked
-          handleHeartDisplay(hasLiked, albumId)
-        })
-      // いいねボタンを押す
-      listenInactiveHeartEvent(albumId)
-      listenActiveHeartEvent(albumId)
-
-      // Comment
-      // 一覧の取得
-      axios.get(`/albums/${albumId}/comments`)
-        .then((res) => {
-          const comments = res.data
-          comments.forEach((comment) => {
-            appendNewComment(comment)
+  if ($('.card').length) {
+    // すべてのアルバムカード要素を取得
+    const albums = document.querySelectorAll('.card')
+    albums.forEach((album) => {
+      const albumDataset = album.dataset
+      const albumId = albumDataset.albumId
+      if (albumId) {
+        // Like
+        // いいね状態の取得
+        axios.get(`/api/albums/${albumId}/like`)
+          .then((response) => {
+            const hasLiked = response.data.hasLiked
+            handleHeartDisplay(hasLiked, albumId)
           })
-        })
-        .catch((error) => {
-          window.alert('コメントを取得できませんでした')
-        })
-      // コメント投稿フォームの表示
-      handleCommentForm()
-      // コメント投稿
-      $('.add-comment-button').off('click').on('click', () => {
-        const content = $('#comment_content').val()
-        $('.show-comment-form').removeClass('hidden')
-        $('.comment-text-area').addClass('hidden')
-        if (!content.trim()) {
-          window.alert('コメントを入力してください')
-        } else {
-          axios.post(`/albums/${albumId}/comments`, {
-            comment: {content: content}
-          })
-            .then((res) => {
-              const comment = res.data
+        // いいねボタンを押す
+        listenInactiveHeartEvent(albumId)
+        listenActiveHeartEvent(albumId)
+
+        // Comment
+        // 一覧の取得
+        axios.get(`/albums/${albumId}/comments`)
+          .then((res) => {
+            const comments = res.data
+            comments.forEach((comment) => {
               appendNewComment(comment)
-              $('#comment_content').val('')
             })
+          })
+        // コメント投稿フォームの表示
+        handleCommentForm()
+        // コメント投稿
+        $('.add-comment-button').off('click').on('click', () => {
+          const content = $('#comment_content').val()
+          $('.show-comment-form').removeClass('hidden')
+          $('.comment-text-area').addClass('hidden')
+          if (!content.trim()) {
+            window.alert('コメントを入力してください')
+          } else {
+            axios.post(`/albums/${albumId}/comments`, {
+              comment: {content: content}
+            })
+              .then((res) => {
+                const comment = res.data
+                appendNewComment(comment)
+                $('#comment_content').val('')
+              })
+          }
+        })
+      }
+    })
+  }
+
+  // フォロー
+  if ($('.profile').length) {
+    const followDataset = $('.profile').data()
+    const accountId = followDataset.accountId
+    const followId = followDataset.followId
+    // フォロー状態の取得
+    axios.get(`/accounts/${accountId}/follows/${followId}`)
+      .then((res) => {
+        const followersCount = res.data.followersCount
+        const hasFollowed = res.data.hasFollowed
+        $('#followers-count').append(`<p>${followersCount}</p>`)
+        if (hasFollowed) {
+          $('.unfollow_btn').removeClass('hidden')
+        } else {
+          $('.follow_btn').removeClass('hidden')
         }
       })
-    }
-  })
+    // フォロー
+    $('.follow_btn').off('click').on('click', () => {
+      axios.post(`/accounts/${accountId}/follows`)
+        .then((res) => {
+          const followersCount = res.data.followersCount
+          $('.follow_btn').addClass('hidden')
+          $('.unfollow_btn').removeClass('hidden')
+          $('#followers-count').empty()
+          $('#followers-count').append(`<p>${followersCount}</p>`)
+        })
+    })
+    // アンフォロー
+    $('.unfollow_btn').off('click').on('click', () => {
+      axios.post(`/accounts/${accountId}/unfollows`)
+        .then((res) => {
+          const followersCount = res.data.followersCount
+          $('.unfollow_btn').addClass('hidden')
+          $('.follow_btn').removeClass('hidden')
+          $('#followers-count').empty()
+          $('#followers-count').append(`<p>${followersCount}</p>`)
+        })
+    })
+  }
 })

@@ -9,9 +9,12 @@
   .picture
     .picture_author
       .picture_author_avatar
-        = image_tag url_for(@album.user.avatar)
+        - if current_user&.avatar&.attached?
+          = image_tag url_for(current_user.avatar)
+        - else
+          = image_tag 'default-avatar.png'
       .picture_author_name
-        %p= @album.user.account
+        %p= current_user.account
     .picture_post
       = form_with model: @album, local: true do |f|
         = f.text_field :title, class: 'text', placeholder: "Title"

@@ -4,37 +4,38 @@
       = link_to root_path do
         = image_tag "back.png"
     .header_title
-      %h2= current_user.account
+      %h2= @user.account
+    .header_action
+      .follow_btn.hidden
+        Follow
+      .unfollow_btn.hidden
+        Unfollow
 
-  .profile
+  .profile{ data: { account_id: @user.id, follow_id: @user.follower_relationships&.find_by(follower_id: current_user.id)&.id }}
     .profile_image
-      = form_with model: current_user, url: avatar_path, method: :put, local: true, class: "profile_image_container" do |f|
-        = f.label :avatar do
-          = f.file_field :avatar, style: "display:none;", onchange: "this.form.submit()"
-          - if current_user.avatar&.attached?
-            = image_tag current_user.avatar
-          - else
-            = image_tag 'default-avatar.png'
+      .profile_image_container
+        - if @user&.avatar&.attached?
+          = image_tag url_for(@user.avatar)
+        - else
+          = image_tag 'default-avatar.png'
     %ul.profile_info
       %li
         .profile_info_count
-          %p= current_user.albums.count
+          %p= @user.albums.count
         .profile_info_item
           %p Posts
-      = link_to account_followers_path(current_user) do
+      = link_to account_followers_path(@user) do
         %li
-          .profile_info_count
-            %p= current_user.followers.count
+          .profile_info_count{id: "followers-count"}
           .profile_info_item
             %p Followers
-      = link_to account_follows_path(current_user) do
+      = link_to account_follows_path(@user) do
         %li
           .profile_info_count
-            %p= current_user.followings.count
+            %p= @user.followings.count
           .profile_info_item
             %p Followings
-
-  - current_user.albums.each do |album|
+  - @user.albums.each do |album|
     .card
       .card_pictures
         - if album.pictures.attached?

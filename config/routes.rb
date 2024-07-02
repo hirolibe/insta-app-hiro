@@ -13,6 +13,12 @@ Rails.application.routes.draw do
     resources :comments, only: [:index, :create]
   end
 
+  resources :accounts, only: [:show] do
+    resources :follows, only: [:index, :show, :create]
+    resources :followers, only: [:index]
+    resources :unfollows, only: [:create]
+  end
+
   resource :profile, only: [:show, :edit, :update]
   resource :avatar, only: [:update]
 
