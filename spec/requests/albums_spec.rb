@@ -13,7 +13,6 @@ RSpec.describe "Albums", type: :request do
   end
 
   describe 'POST /albums' do
-    let(:album) { build(:album, user: user) }
     let(:picture1) {fixture_file_upload(Rails.root.join('spec/fixtures/files/test_image1.jpg'), 'image/jpeg') }
     let(:picture2) {fixture_file_upload(Rails.root.join('spec/fixtures/files/test_image2.jpg'), 'image/jpeg') }
 
@@ -24,7 +23,7 @@ RSpec.describe "Albums", type: :request do
 
       it '記事が保存される' do
         album_params = {
-          title: album.title,
+          title: Faker::Lorem.characters(number: 10),
           pictures: [picture1, picture2]
         }
         post albums_path, params: { album: album_params }
