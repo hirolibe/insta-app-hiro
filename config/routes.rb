@@ -9,9 +9,7 @@ Rails.application.routes.draw do
 
   root to: 'albums#index'
 
-  resources :albums do
-    resources :comments, only: [:index, :create]
-  end
+  resources :albums
 
   resources :accounts, only: [:show] do
     resources :follows, only: [:index, :show, :create]
@@ -25,6 +23,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     scope 'albums/:album_id' do
+      resources :comments, only: [:index, :create]
       resource :like, only: [:show, :create, :destroy]
     end
   end
