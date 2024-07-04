@@ -35,6 +35,8 @@ gem 'faker'
 gem 'hamlit'
 gem 'sidekiq'
 gem 'active_decorator'
+gem 'aws-sdk-s3', require: false
+gem 'ffi', '~> 1.16.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -43,6 +45,7 @@ group :development, :test do
   gem 'rubocop-rails'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'dotenv-rails'
 end
 
 group :development do
