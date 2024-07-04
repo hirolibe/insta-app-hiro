@@ -17,6 +17,7 @@ class Api::CommentsController < Api::ApplicationController
     comment.user = current_user
     comment.save!
     comment_info = comment_info(comment)
+    binding.pry
 
     render json: comment_info
   end
