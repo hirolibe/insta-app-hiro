@@ -1,0 +1,16 @@
+{
+  "name": "insta-app-hiro",
+  "description": "This is insta-app",
+  "keywords": [],
+  "website": "",
+  "repository": "https://github.com/hirolibe/insta-app-hiro",
+  "env": {},
+  "addons": [
+    "heroku-postgresql:hobby-dev"
+  ],
+  "buildpacks": [{
+    "url": "heroku/nodejs"
+  }, {
+    "url": "heroku/ruby"
+  }]
+}
