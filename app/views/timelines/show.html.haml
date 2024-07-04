@@ -7,7 +7,7 @@
       = link_to 'All Albums', root_path
 
   - @albums.each do |album|
-    .card{data: { album_id: album.id }}
+    .card{data: { album_id: album.id, author_id: album.user_id, current_user_id: current_user.id }}
       = link_to account_path(album.user) do
         .card_top
           .card_top_image
@@ -35,7 +35,7 @@
         = link_to "https://x.com/intent/post?text=#{album.title}&url=#{album_url(album)}&hashtags=デイトラ,DAY19", data: { toggle: "tooltip", placement: "bottom" }, title: "Xでシェア", target: "_blank" do
           = image_tag 'link.png'
       .card_detail
-        %p Jasmine and 12,000 other liked your post
+        %p= "#{album.likes.count} liked your post"
         .card_detail_title
           .card_detail_title_author
             %p= album.user.account

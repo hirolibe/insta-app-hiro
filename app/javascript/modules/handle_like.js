@@ -1,13 +1,15 @@
 import $ from 'jquery'
 import axios from 'modules/axios'
 
-const displayHeartStatus = (albumId) => {
-  axios.get(`/api/albums/${albumId}/like`)
-    .then((response) => {
-      const hasLiked = response.data.hasLiked
-      handleLikeStatus(hasLiked, albumId)
-    })
+const displayHeartStatus = (albumId, authorId, currentUserId) => {
+  if (authorId !== currentUserId) {
+    axios.get(`/api/albums/${albumId}/like`)
+      .then((response) => {
+        const hasLiked = response.data.hasLiked
+        handleLikeStatus(hasLiked, albumId)
+      })
   }
+}
 
 const handleLikeStatus = (hasLiked, albumId) => {
   if (hasLiked) {

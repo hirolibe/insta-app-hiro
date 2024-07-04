@@ -22,7 +22,6 @@
           = f.file_field :pictures, multiple: true, style: "display:none;"
           .btn-secondary
             + Pictures
-        %p 0 selected
         = f.submit "Post Album", class: "btn-primary"
     %ul#error_explanation
       - @album.errors.full_messages.each do |message|

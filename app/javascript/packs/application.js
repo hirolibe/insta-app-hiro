@@ -25,32 +25,34 @@ import {
 } from 'modules/handle_follow'
 
 document.addEventListener('turbolinks:load', () => {
-  if ($('.card').length) {
-    const albums = document.querySelectorAll('.card')
-    albums.forEach((album) => {
-      const albumDataset = album.dataset
+  const albums = document.querySelectorAll('.card')
+  albums.forEach((album) => {
+    const albumDataset = album.dataset
+    if (albumDataset.albumId) {
       const albumId = albumDataset.albumId
-      if (albumId) {
-        // いいね
-        displayHeartStatus(albumId)
-        listenInactiveHeartEvent(albumId)
-        listenActiveHeartEvent(albumId)
+      const authorId = albumDataset.authorId
+      const currentUserId = albumDataset.currentUserId
+      // いいね
+      displayHeartStatus(albumId, authorId, currentUserId)
+      listenInactiveHeartEvent(albumId)
+      listenActiveHeartEvent(albumId)
 
-        // コメント
-        displayComments(albumId)
-        displayCommentForm()
-        postComment(albumId)
-      }
-    })
-  }
+      // コメント
+      displayComments(albumId)
+      displayCommentForm()
+      postComment(albumId)
+    }
+  })
 
   // フォロー
   if ($('.profile').length) {
     const followDataset = $('.profile').data()
-    const accountId = followDataset.accountId
-    const followId = followDataset.followId
-    displayFollowStatus(accountId, followId)
-    listenFollowEvent(accountId)
-    listenUnfollowEvent(accountId)
+    if (followDataset.accountId) {
+      const accountId = followDataset.accountId
+      const followId = followDataset.followId
+      displayFollowStatus(accountId, followId)
+      listenFollowEvent(accountId)
+      listenUnfollowEvent(accountId)
+    }
   }
 })

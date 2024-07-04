@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :destroy]
 
   def index
     @albums = Album.all
@@ -16,20 +16,17 @@ class AlbumsController < ApplicationController
   def create
     @album = current_user.albums.build(album_params)
     if @album.save
-      redirect_to album_path(@album), notice: '保存できたよ'
+      redirect_to album_path(@album), notice: 'Saved successfully'
     else
-      flash.now[:error] = '保存に失敗しました'
+      flash.now[:error] = 'Failed to save'
       render :new
     end
   end
 
-  def edit
-  end
-
-  def update
-  end
-
   def destroy
+    album = current_user.albums.find(params[:id])
+    album.destroy!
+    redirect_to profile_path, notice: 'Deleted successfully'
   end
 
   private

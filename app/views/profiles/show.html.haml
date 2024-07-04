@@ -35,7 +35,7 @@
             %p Followings
 
   - current_user.albums.each do |album|
-    .card
+    .card{data: { album_id: album.id, author_id: album.user_id, current_user_id: current_user.id }}
       .card_pictures
         - if album.pictures.attached?
           - album.pictures.each do |picture|
@@ -50,7 +50,9 @@
           = image_tag 'comment.png'
         = link_to "https://x.com/intent/post?text=#{album.title}&url=#{album_url(album)}&hashtags=デイトラ,DAY19", data: { toggle: "tooltip", placement: "bottom" }, title: "Xでシェア", target: "_blank" do
           = image_tag 'link.png'
+        = link_to album_path(album), method: :delete, data: { confirm: "Are you sure?" } do
+          = image_tag 'trush.png'
       .card_detail
-        %p Jasmine and 12,000 other liked your post
+        %p= "#{album.likes.count} liked your post"
         .card_detail_title
           %p= album.title
