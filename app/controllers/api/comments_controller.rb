@@ -1,4 +1,4 @@
-class CommentsController < ApplicationController
+class Api::CommentsController < Api::ApplicationController
   before_action :authenticate_user!, only: [:create]
 
   def index
@@ -17,6 +17,7 @@ class CommentsController < ApplicationController
     comment.user = current_user
     comment.save!
     comment_info = comment_info(comment)
+    binding.pry
 
     render json: comment_info
   end

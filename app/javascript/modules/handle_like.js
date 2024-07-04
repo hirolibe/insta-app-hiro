@@ -1,6 +1,22 @@
 import $ from 'jquery'
 import axios from 'modules/axios'
 
+const displayHeartStatus = (albumId) => {
+  axios.get(`/api/albums/${albumId}/like`)
+    .then((response) => {
+      const hasLiked = response.data.hasLiked
+      handleLikeStatus(hasLiked, albumId)
+    })
+  }
+
+const handleLikeStatus = (hasLiked, albumId) => {
+  if (hasLiked) {
+    $(`#active-heart-icon-${albumId}`).removeClass('hidden')
+  } else {
+    $(`#inactive-heart-icon-${albumId}`).removeClass('hidden')
+  }
+}
+
 const listenInactiveHeartEvent = (albumId) => {
   $(`#inactive-heart-icon-${albumId}`).off('click').on('click', () => {
     axios.post(`/api/albums/${albumId}/like`)
@@ -30,6 +46,7 @@ const listenActiveHeartEvent = (albumId) => {
 }
 
 export {
+  displayHeartStatus,
   listenInactiveHeartEvent,
   listenActiveHeartEvent
 }

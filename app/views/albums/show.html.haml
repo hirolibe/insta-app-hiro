@@ -40,9 +40,10 @@
   .comment
     %h3 Comment
     .comment-container
-    .comment_btn.show-comment-form
-      = image_tag 'comment.png'
-    .comment-text-area.hidden
-      = text_area_tag :comment_content, '', class: 'sm'
-      .btn-primary.add-comment-button
-        Post Comment
+    - if user_signed_in?
+      .comment_btn.show-comment-form
+        = image_tag 'comment.png'
+      .comment-text-area.hidden
+        = text_area_tag :comment_content, '', class: 'sm'
+        .btn-primary.add-comment-button
+          Post Comment
