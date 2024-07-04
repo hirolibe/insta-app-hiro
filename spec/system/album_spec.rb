@@ -20,7 +20,6 @@ RSpec.describe 'Album', type: :system do
     it 'コメント入力フォームが表示される' do
       visit root_path
       all('img[src*="comment-"]')[0].click
-      binding.pry
       expect(page).to have_css('.show-comment-form')
     end
   end
