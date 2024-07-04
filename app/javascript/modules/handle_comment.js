@@ -49,7 +49,7 @@ const postComment = (albumId) => {
     const content = $('#comment_content').val()
     hideCommentForm()
     if (!content.trim()) {
-      window.alert('コメントを入力してください')
+      window.alert('Please enter your comments')
     } else {
       axios.post(`/api/albums/${albumId}/comments`, {
         comment: {content: content}

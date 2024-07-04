@@ -4,7 +4,7 @@ class AvatarsController < ApplicationController
   def update
     @user = current_user
     if @user.update(avatar_params)
-      redirect_to profile_path, notice: 'アバターが更新されました'
+      redirect_to profile_path, notice: 'Avatars have been updated'
     else
       render profile_path
     end
